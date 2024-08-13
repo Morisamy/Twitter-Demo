@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/auth/twitter', async (req, res) => {
-  const { url, oauth_token, oauth_token_secret } = await client.generateAuthLink('http://localhost:3000/callback');
+  const { url, oauth_token, oauth_token_secret } = await client.generateAuthLink('https://twitter-demo-production.up.railway.app/callback');
   req.session.oauth_token_secret = oauth_token_secret;
   res.redirect(url);
 });
