@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+      body {
+        background: linear-gradient(to bottom, #000000, #02012e, #002144, #004f87, #0065a8, #007acc, #008fef, #00a3ff);
+        font-family: Arial, sans-serif;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+          margin: 0;
+          color: white;
+
+      }
+      .container {
+          
+          padding: 20px;
+          border-radius: 10px;
+          text-align: center;
+          width: 80%;
+          max-width: 300px;
+          color: white;
+
+      }
+      button {
+          
+          background-color: #1DA1F2;
+          text-emphasis-color: #FFF;
+          border: none;
+          border-radius: 12px;
+          margin: 10px;
+          border-radius: 5px;
+          cursor: pointer;
+          width: 100%;
+          padding: 10px 24px;
+          color: white;
+      }
+        textarea {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+  <h1>Post a Tweet</h1>
+  <textarea id="tweetContent" rows="4" cols="50"></textarea><br>
+  <button onclick="postTweet()">Post Tweet</button>
+  <a href="/logout"><button>Logout</button></a>
+</div>
+  <script>
+    function postTweet() {
+      const content = document.getElementById('tweetContent').value;
+      fetch('/post-tweet', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ tweetContent: content })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          alert('Tweet posted successfully!');
+        } else {
+          alert('Error posting tweet');
+        }
+      });
+    }
+  </script>
+</body>
+</html>
