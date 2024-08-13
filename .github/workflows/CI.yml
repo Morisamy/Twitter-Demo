@@ -16,7 +16,10 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm ci
+      - run:  npm i twitter-api-v2
+      - run:  npm install express
+      - run:  npm audit fix 
+      - run:  npm install express-session
       - run: npm run build
       - run: npm test
         env:
